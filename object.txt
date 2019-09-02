@@ -1,0 +1,1 @@
+{"deviceID":"XX2019-23","deviceName":"Osama-bot"}
