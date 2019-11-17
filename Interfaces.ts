@@ -4,7 +4,7 @@ interface Device{
     ID : string,
     owner : string,
     macAddress : string,
-    requestTimeStamp : Date
+    requestTimeStamp : Number
 }
 
 interface connectedClient{
@@ -12,12 +12,12 @@ interface connectedClient{
 }
 
 interface tellRequest{
-    senderID : string,    // supports 'all' to send msg to all connected clients
-    receiverID : string,
+    senderName : string,    // supports 'all' to send msg to all connected clients
+    receiverName : string,
     message : string,
 }
 
-interface killRequest{
+interface killSwitchRequest{
     victim : string, // supports 'all' to kill all connected clients
     killer : string
 }
@@ -40,10 +40,6 @@ interface getDevicesResponse{
 
 //Server interfaces
 
-interface killSwitchRequest{
-    victimID : string,
-    killerID : string 
-}
 
 interface msgRequest{
     msg : string,
@@ -68,7 +64,8 @@ interface msgRequest{
     * Events Server will emit to the clients
         1. killSwitch : takes object of interface killSwitchRequest
 
-        2. 
+
+        2. registrationAcknowledgement
 
 */
 

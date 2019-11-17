@@ -5,3 +5,7 @@ export function printServerDetails(){
     console.log('http://localhost:3000');
 }
 
+export function logger(tolog){
+    console.log(tolog);
+}
+

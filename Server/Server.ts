@@ -6,7 +6,7 @@ export let connectedClients = {};
 const express = require('express');
 // import fs from 'fs';
 import { printServerDetails } from './misc';
-import { registrationHandler } from './handlers';
+import { registrationHandler, killSwitchForwarder ,msgForwarder} from './handlers';
 
 const app = express();
 const server = app.listen(process.env.PORT || 3000,printServerDetails);
@@ -19,6 +19,14 @@ io.on('connection',(socket)=>{
 
     //handling registration event
     socket.on("registration",(device:Device)=>{
-        registrationHandler(device,connectedClients);
+        registrationHandler(socket,device,connectedClients);
     });
+
+    socket.on('kill',(request:killSwitchRequest)=>{
+        killSwitchForwarder(connectedClients,request);
+    })
+
+    socket.on('tell',(request :tellRequest)=>{
+        msgForwarder(connectedClients,request);
+    })
 })
